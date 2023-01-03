@@ -1,10 +1,10 @@
 import SignIn from "./LoginPage";
-
+import Form from "./Form"
 
 function App() {
   return (
     <div>
-      <SignIn />
+      <Form />
     </div>
   );
 }
