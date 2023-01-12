@@ -1,10 +1,9 @@
-import SignIn from "./LoginPage";
-import Form from "./Form"
+import MainPage from "./MainPage";
 
 function App() {
   return (
-    <div>
-      <Form />
+    <div className="App">
+        <MainPage />
     </div>
   );
 }
