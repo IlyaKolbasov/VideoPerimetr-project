@@ -7,13 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-public class login {
-
-   @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "/registration")
-    public String addUser(@RequestBody User user) {
-        User user1 = user;
-        return "New user";
-    }
-}
+//@RestController
+//public class login {
+//
+//   @CrossOrigin(origins = "http://localhost:3000")
+//    @PostMapping(path = "/registration")
+//    public String addUser(@RequestBody User user) {
+//        User user1 = user;
+//        return "New user";
+//    }
+//}

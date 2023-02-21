@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArchiveController {
     @Autowired
     ArchiveInfoService archiveInfoService;
-    @PostMapping(path = "/")
+    @PostMapping(path = "/mainpage")
     public String addUser(@RequestBody ArchiveInfo newArchiveInfo) {
        // ArchiveInfo newArchiveInfo = archiveInfo;
         archiveInfoService.saveArchiveInfo(newArchiveInfo);
