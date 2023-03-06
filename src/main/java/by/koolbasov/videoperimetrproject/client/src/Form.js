@@ -37,8 +37,7 @@ export default function SignUp() {
     });
 
     const onSubmit = async (data) => {
-       const record = await createRecord(data);
-       console.log(record);
+      const record = await createRecord(data);
     }
 
     return (

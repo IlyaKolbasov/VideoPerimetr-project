@@ -1,10 +1,10 @@
-import {$host} from "./index";
+import {$authHost, $host} from "./index";
 import axios from "axios";
 
 
-axios.defaults.headers.post['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+
 
 export const createRecord = async (info) => {
-    const { data } = await $host.post('/mainpage', {...info});
+    const { data } = await $authHost.post('/mainpage', {...info}, {withCredentials: true});
     return data;
 }
