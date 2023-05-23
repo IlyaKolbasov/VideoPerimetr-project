@@ -19,7 +19,10 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws Exception {
+        if(repository.findUserByEmail(request.getEmail()).getEmail().equals(request.getEmail())){
+           throw new Exception("Пользователь с таким email уже существоет");
+        }
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())

@@ -14,7 +14,6 @@ public class ArchiveController {
     ArchiveInfoService archiveInfoService;
     @PostMapping(path = "/mainpage")
     public String addUser(@RequestBody ArchiveInfo newArchiveInfo) {
-       // ArchiveInfo newArchiveInfo = archiveInfo;
         archiveInfoService.saveArchiveInfo(newArchiveInfo);
         return "New request";
     }

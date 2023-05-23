@@ -8,7 +8,7 @@ import Logo from "./Logo";
 
 const Footer = () => {
     return (
-        <Stack direction="row" spacing={8} sx={{
+        <Stack id="contact" direction="row" spacing={8} sx={{
             justifyContent: 'center',
             alignItems: 'center',
             height: '150px',

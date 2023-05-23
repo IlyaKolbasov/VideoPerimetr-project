@@ -180,6 +180,7 @@ const LoginPage = () => {
                             fullWidth
                             variant="contained"
                             sx={{mt: 3, mb: 2}}
+                            className="sign-button sign-button-modal"
                         >
                             {
                                 isAuth ? 'Sign in' : 'Sign up'
