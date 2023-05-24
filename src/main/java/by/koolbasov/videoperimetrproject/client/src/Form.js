@@ -1,13 +1,12 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Autocomplete, InputAdornment, TextField, Typography } from '@mui/material';
 import {
   Controller,
   SubmitHandler,
@@ -67,6 +66,42 @@ export default function SignUp() {
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
+                <Autocomplete
+                    options={tags}
+                    onChange={(e, value) => handleClick(value)}
+                    autoHighlight
+                    sx={{
+                      width: '360px',
+                      paddingLeft: '10px',
+                      '@media (max-height: 870px)': {
+                        paddingTop: '10px',
+                      },
+                      '@media (max-width: 360px)': {
+                        width: '340px',
+                        padding: 0,
+                      },
+                    }}
+                    renderOption={(props, option) => (
+                        <Typography
+                            component="li"
+                            sx={{ ...font('500', '16px', '22px', '0', '#010101', 'Noto Sans') }}
+                            {...props}
+                        >
+                          {option}
+                        </Typography>
+                    )}
+                    renderInput={(params) => <CssTextField {...params}
+                                                           placeholder="Search tag..."
+                                                           InputProps={{ ...params.InputProps,
+                                                             startAdornment: ( <InputAdornment position="start"> <SearchIcon />
+                                                             </InputAdornment> ),
+                                                             style: {
+                                                               ...font('500', '16px', '22px', '0', '#858585', 'Noto Sans'),
+                                                             },
+                                                           }}
+                    />
+                    }
+                />
                 <Grid item xs={12} sm={6}>
                   <Controller
                     control={control}

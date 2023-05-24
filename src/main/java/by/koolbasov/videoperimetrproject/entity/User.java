@@ -26,6 +26,11 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
