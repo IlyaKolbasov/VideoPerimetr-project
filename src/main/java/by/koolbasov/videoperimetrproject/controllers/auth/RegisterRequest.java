@@ -15,4 +15,8 @@ public class RegisterRequest {
     private String lastname;
     private String email;
     private String password;
+    private String city;
+    private String street;
+    private String houseNum;
+    private int flatNum;
 }
