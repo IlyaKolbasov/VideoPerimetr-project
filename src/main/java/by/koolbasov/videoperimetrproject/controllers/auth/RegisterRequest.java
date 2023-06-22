@@ -1,11 +1,11 @@
 package by.koolbasov.videoperimetrproject.controllers.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import by.koolbasov.videoperimetrproject.dto.AddressDto;
+import lombok.*;
 
 @Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,8 +15,5 @@ public class RegisterRequest {
     private String lastname;
     private String email;
     private String password;
-    private String city;
-    private String street;
-    private String houseNum;
-    private int flatNum;
+    private AddressDto addressDto;
 }

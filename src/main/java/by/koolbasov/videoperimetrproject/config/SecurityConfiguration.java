@@ -1,6 +1,7 @@
 package by.koolbasov.videoperimetrproject.config;
 
 import by.koolbasov.videoperimetrproject.jwt.JwtAuthenticationFilter;
+import by.koolbasov.videoperimetrproject.mapper.AddressMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,6 @@ public class SecurityConfiguration implements WebMvcConfigurer  {
     private final AuthenticationProvider authenticationProvider;
 
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http    .cors()
@@ -31,7 +31,7 @@ public class SecurityConfiguration implements WebMvcConfigurer  {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/userlog/**","/")
+                .requestMatchers("/userlog/**","/","/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

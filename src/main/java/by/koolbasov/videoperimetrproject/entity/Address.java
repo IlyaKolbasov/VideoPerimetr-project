@@ -18,19 +18,17 @@ import java.util.*;
 @AllArgsConstructor
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String city;
     private String street;
     private String houseNum;
-    private int flatNnum;
-//    @ElementCollection
-//    private List<Integer> flat_Num;
+    private int flatNum;
 
-   @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address")
     private User owner;
 
-  @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address")
     private ArchiveInfo archiveInfo;
 
 }

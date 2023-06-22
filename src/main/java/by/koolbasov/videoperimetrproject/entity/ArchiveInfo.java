@@ -2,15 +2,16 @@ package by.koolbasov.videoperimetrproject.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ArchiveInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
@@ -24,6 +25,5 @@ public class ArchiveInfo {
     @JoinColumn (name = "address_id")
     private Address address;
 
-    public ArchiveInfo() {
-    }
+
 }

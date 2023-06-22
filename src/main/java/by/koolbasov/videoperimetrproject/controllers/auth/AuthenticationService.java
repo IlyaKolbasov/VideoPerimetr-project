@@ -3,11 +3,11 @@ package by.koolbasov.videoperimetrproject.controllers.auth;
 import by.koolbasov.videoperimetrproject.entity.Address;
 import by.koolbasov.videoperimetrproject.entity.User;
 import by.koolbasov.videoperimetrproject.jwt.JwtService;
+import by.koolbasov.videoperimetrproject.mapper.AddressMapper;
 import by.koolbasov.videoperimetrproject.repository.AddressRepository;
 import by.koolbasov.videoperimetrproject.repository.UserRepository;
 import by.koolbasov.videoperimetrproject.table.Role;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,12 +28,8 @@ public class AuthenticationService {
                 repository.findUserByEmail(request.getEmail()).getEmail().equals(request.getEmail())) {
             throw new Exception("Пользователь с таким email уже существоет");
         }
-        var address = Address.builder()
-                .city(request.getCity())
-                .street(request.getStreet())
-                .houseNum(request.getHouseNum())
-                .flatNnum(request.getFlatNum())
-                .build();
+        Address address = AddressMapper.INSTANCE.toAddress(request.getAddressDto());
+
         addressRepository.save(address);
         var user = User.builder()
                 .firstname(request.getFirstname())
