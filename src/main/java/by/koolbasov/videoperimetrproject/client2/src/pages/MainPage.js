@@ -14,11 +14,6 @@ import Heading from "../components/Heading";
 export const MainPage = () => {
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-      const user = JSON.parse(localStorage.getItem('user')) || {};
-      setUser(user);
-  }, [])
-
 
   return (
     <Box sx={{ fontFamily: "Noto Serif" }}>

@@ -1,14 +1,28 @@
 import jwt_decode from 'jwt-decode';
 import { $host } from "./host";
+import axios from "axios";
+
+function getJwtFromCookie() {
+    var cookieValue = document.cookie
+        .split(';')
+        .map(cookie => cookie.trim())
+        .find(cookie => cookie.startsWith('jwt='));
+
+    if (cookieValue) {
+        return cookieValue.substring(4);
+    }
+
+    return null;
+}
 
 export const registration = async (user) => {
-    const { data } = await $host.post('/userlog/registration', user);
-    localStorage.setItem('token', data.token);
-    return jwt_decode(data.token);
+    await axios.post('/userlog/registration', user);
+    const jwt = getJwtFromCookie()
+    return jwt_decode(jwt);
 }
 
 export const login = async (user) => {
-    const { data } = await $host.post('/userlog/login', {email: user.email, password: user.password});
-    localStorage.setItem('token', data.token);
-    return jwt_decode(data.token);
+    await axios.post('/userlog/login', {email: user.email, password: user.password});
+    const jwt = getJwtFromCookie()
+    return jwt_decode(jwt);
 }

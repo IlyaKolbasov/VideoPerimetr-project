@@ -10,7 +10,7 @@ import {deleteRecord} from "../../http";
 
 export function BasicAccordion({ record }) {
 
-    const { firstName, lastName, city, street, buildingNumber, flatNumber, fromDate, fromTime, toDate, toTime } = record;
+    const { firstName, lastName, city, street, buildingNumber, flatNumber, fromDate, fromTime, toDate, toTime, number } = record;
 
     const handleDelete = async() => {
         const result = await deleteRecord()
@@ -39,6 +39,9 @@ export function BasicAccordion({ record }) {
                     </Typography>
                     <Typography>
                         { `Период: с ${fromDate}, ${fromTime} по ${toDate}, ${toTime}` }
+                    </Typography>
+                    <Typography>
+                        { `Телефон: ${number}` }
                     </Typography>
                 </AccordionDetails>
             </Accordion>
