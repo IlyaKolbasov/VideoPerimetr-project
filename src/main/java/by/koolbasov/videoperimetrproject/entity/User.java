@@ -26,10 +26,10 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
 
+//    @OneToOne
+//    @JoinColumn(name = "address_id")
+//    private Address address;
 
 
     @Override

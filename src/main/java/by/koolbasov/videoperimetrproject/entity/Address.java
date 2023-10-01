@@ -24,11 +24,13 @@ public class Address {
     private String street;
     private String houseNum;
     private int flatNum;
+    private int tariff;
+    private String contractNum;
 
-    @OneToOne(mappedBy = "address")
-    private User owner;
+//    @OneToOne(mappedBy = "address")
+//    private User owner;
 
-    @OneToOne(mappedBy = "address")
-    private ArchiveInfo archiveInfo;
+//    @OneToOne(mappedBy = "address")
+//    private ArchiveInfo archiveInfo;
 
 }

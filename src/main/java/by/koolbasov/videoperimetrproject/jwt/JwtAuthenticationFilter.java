@@ -1,6 +1,7 @@
 package by.koolbasov.videoperimetrproject.jwt;
 
 import jakarta.servlet.*;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -31,15 +32,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
 
         final String authHeader = request.getHeader("Authorization");
-        final String jwt;
+        Cookie []arrayCookie = request.getCookies();
+        final String jwt=arrayCookie[0].getValue();
         final String userEmail;
 
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || authHeader.equals("Bearer null") || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
-        jwt = authHeader.substring(7);
+        //jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
         if(userEmail!=null && SecurityContextHolder.getContext().getAuthentication() ==null){// not auth
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);

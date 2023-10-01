@@ -28,19 +28,21 @@ public class ArchiveInfoServiceImpl implements ArchiveInfoService {
     private AddressRepository addressRepository;
     @Override
     public void saveArchiveInfo(ArchiveInfoDto archiveInfodto) {
-        Address address = AddressMapper.INSTANCE.toAddress(archiveInfodto.getAddressDto());
-        addressRepository.save(address);
-        var archiveInfo = ArchiveInfo.builder()
-                .firstName(archiveInfodto.getFirstName())
-                .lastName(archiveInfodto.getLastName())
-                .number(archiveInfodto.getNumber())
-                .fromDate(archiveInfodto.getFromDate())
-                .toDate(archiveInfodto.getToDate())
-                .fromTime(archiveInfodto.getFromTime())
-                .toTime(archiveInfodto.getToTime())
-                .address(address)
-                .build();
-        archiveInfoRepository.save(archiveInfo);
+//        var archiveInfo = ArchiveInfo.builder()
+//                .firstName(archiveInfodto.getFirstName())
+//                .lastName(archiveInfodto.getLastName())
+//                .number(archiveInfodto.getNumber())
+//                .fromDate(archiveInfodto.getFromDate())
+//                .toDate(archiveInfodto.getToDate())
+//                .fromTime(archiveInfodto.getFromTime())
+//                .toTime(archiveInfodto.getToTime())
+//                .build();
+        archiveInfoRepository.save(ArchiveInfoMapper.MAPPER.toArchiveInfo(archiveInfodto));
+    }
+
+    @Override
+    public void delete(Long id) {
+        archiveInfoRepository.deleteById(id);
     }
 
     @Override

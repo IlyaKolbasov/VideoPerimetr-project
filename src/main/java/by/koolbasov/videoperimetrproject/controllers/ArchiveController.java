@@ -1,8 +1,6 @@
 package by.koolbasov.videoperimetrproject.controllers;
 
-import by.koolbasov.videoperimetrproject.dto.AddressDto;
 import by.koolbasov.videoperimetrproject.dto.ArchiveInfoDto;
-import by.koolbasov.videoperimetrproject.entity.ArchiveInfo;
 import by.koolbasov.videoperimetrproject.service.ArchiveInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +20,6 @@ public class ArchiveController {
         archiveInfoService.saveArchiveInfo(ArchiveInfodto);
         return "New request";
     }
-    @GetMapping(path = "/adminTools")
-    public ResponseEntity<List<ArchiveInfoDto>> getArchiveInfo(){
 
-        return ResponseEntity.ok(archiveInfoService.getAllArchiveInfoDto());
-    }
 
 }

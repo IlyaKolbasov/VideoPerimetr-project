@@ -7,6 +7,8 @@ import by.koolbasov.videoperimetrproject.mapper.AddressMapper;
 import by.koolbasov.videoperimetrproject.repository.AddressRepository;
 import by.koolbasov.videoperimetrproject.repository.UserRepository;
 import by.koolbasov.videoperimetrproject.table.Role;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,16 +30,12 @@ public class AuthenticationService {
                 repository.findUserByEmail(request.getEmail()).getEmail().equals(request.getEmail())) {
             throw new Exception("Пользователь с таким email уже существоет");
         }
-        Address address = AddressMapper.INSTANCE.toAddress(request.getAddressDto());
-
-        addressRepository.save(address);
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-                .address(address)
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -47,7 +45,7 @@ public class AuthenticationService {
     }
 
 
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    public String/*AuthenticationResponse*/ authenticate(AuthenticationRequest request, HttpServletResponse response) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -56,9 +54,14 @@ public class AuthenticationService {
         );
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
-        return AuthenticationResponse.builder()
+       // var jwtToken = jwtService.generateToken(user);
+        Cookie cookie = new Cookie("jwt", jwtService.generateToken(user));
+        cookie.setMaxAge(3600);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        /*return AuthenticationResponse.builder()
                 .token(jwtToken)
-                .build();
+                .build();*/
+        return "ok";
     }
 }

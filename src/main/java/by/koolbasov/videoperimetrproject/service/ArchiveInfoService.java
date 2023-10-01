@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ArchiveInfoService {
     void saveArchiveInfo(ArchiveInfoDto archiveInfodto);
-
+    void delete (Long id);
     List<ArchiveInfoDto> getAllArchiveInfoDto();
 
 }

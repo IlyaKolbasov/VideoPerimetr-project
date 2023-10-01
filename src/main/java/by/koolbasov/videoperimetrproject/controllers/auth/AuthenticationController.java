@@ -1,5 +1,7 @@
 package by.koolbasov.videoperimetrproject.controllers.auth;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +28,11 @@ public class AuthenticationController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationRequest request
+    public String /*ResponseEntity<AuthenticationResponse>*/ authenticate(
+            @RequestBody AuthenticationRequest request, HttpServletResponse response
     ) {
-        return ResponseEntity.ok(service.authenticate(request));
+        return service.authenticate(request, response);
+
     }
 
 
