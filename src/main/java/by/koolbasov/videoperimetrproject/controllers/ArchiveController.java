@@ -15,7 +15,7 @@ import java.util.List;
 public class ArchiveController {
     @Autowired
     ArchiveInfoService archiveInfoService;
-    @PostMapping(path = "/mainpage")
+    @PostMapping(path = "https://videoperimetr.onrender.com/mainpage")
     public String addArchive(@RequestBody ArchiveInfoDto ArchiveInfodto) {
         archiveInfoService.saveArchiveInfo(ArchiveInfodto);
         return "New request";
