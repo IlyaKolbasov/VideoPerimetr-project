@@ -4,6 +4,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,10 +29,11 @@ public class AuthenticationController {
         }
     }
     @PostMapping("/login")
-    public String /*ResponseEntity<AuthenticationResponse>*/ authenticate(
+    public ResponseEntity<String> authenticate(
             @RequestBody AuthenticationRequest request, HttpServletResponse response
-    ) {
-        return service.authenticate(request, response);
+    ) {service.authenticate(request, response);
+        return ResponseEntity.ok()
+                .body("cookie set successfully");
 
     }
 
