@@ -1,14 +1,12 @@
 package by.koolbasov.videoperimetrproject.controllers.auth;
 import by.koolbasov.videoperimetrproject.entity.User;
 import by.koolbasov.videoperimetrproject.jwt.JwtService;
-import by.koolbasov.videoperimetrproject.mapper.AddressMapper;
 import by.koolbasov.videoperimetrproject.repository.AddressRepository;
 import by.koolbasov.videoperimetrproject.repository.UserRepository;
 import by.koolbasov.videoperimetrproject.table.Role;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -56,8 +54,10 @@ public class AuthenticationService {
         //var jwtToken = jwtService.generateToken(user);
         Cookie cookie = new Cookie("jwt", jwtService.generateToken(user));
         cookie.setMaxAge(3600);
-//        cookie.setPath("/");
-//        cookie.setDomain("videiperimetr.vercel.app");
+        cookie.setPath("/");
+        cookie.setDomain(".videiperimetr.vercel.app");
+        cookie.setAttribute("SameSite", "None");
+        cookie.setSecure(true);
         response.addCookie(cookie);
         /*return AuthenticationResponse.builder()
                 .token(jwtToken)
