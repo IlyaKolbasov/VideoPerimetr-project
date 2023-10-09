@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,18 +29,9 @@ public class AuthenticationController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> authenticate(
+    public void /*ResponseEntity<String>*/ authenticate(
             @RequestBody AuthenticationRequest request, HttpServletResponse response
-    ) {
-        HttpHeaders headers = service.authenticate(request, response);
-
-        // Создаем тело ответа
-        String responseBody = "Пример ответа сервера с установленными куками";
-
-        // Возвращаем ResponseEntity с заголовками, телом и статусом
-        return ResponseEntity.status(HttpStatus.OK)
-                .headers(headers)
-                .body(responseBody);
+    ) { service.authenticate(request, response);
     }
 
 

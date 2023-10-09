@@ -46,7 +46,7 @@ public class AuthenticationService {
     }
 
 
-    public HttpHeaders authenticate(AuthenticationRequest request, HttpServletResponse response) {
+    public void authenticate(AuthenticationRequest request, HttpServletResponse response) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -62,11 +62,9 @@ public class AuthenticationService {
         cookie.setDomain("videiperimetr.vercel.app");
         cookie.setSecure(true);
         response.addCookie(cookie);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
         /*return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();*/
-        return headers;
+
     }
 }
