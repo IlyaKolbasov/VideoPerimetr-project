@@ -1,6 +1,4 @@
 package by.koolbasov.videoperimetrproject.controllers.auth;
-
-import by.koolbasov.videoperimetrproject.entity.Address;
 import by.koolbasov.videoperimetrproject.entity.User;
 import by.koolbasov.videoperimetrproject.jwt.JwtService;
 import by.koolbasov.videoperimetrproject.mapper.AddressMapper;
@@ -60,9 +58,6 @@ public class AuthenticationService {
         cookie.setMaxAge(3600);
         cookie.setPath("/");
         cookie.setDomain("videiperimetr.vercel.app");
-        cookie.setSecure(true);
-        String cookieString = cookie.getName() + "=" + cookie.getValue() + "; SameSite=None";
-        response.addHeader("Set-Cookie", cookieString);
         response.addCookie(cookie);
         /*return AuthenticationResponse.builder()
                 .token(jwtToken)
