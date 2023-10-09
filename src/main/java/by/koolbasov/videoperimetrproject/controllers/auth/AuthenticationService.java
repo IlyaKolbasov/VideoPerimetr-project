@@ -27,7 +27,7 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) throws Exception {
 
-        if (repository.findUserByEmail(request.getEmail())!=null &&
+        if (repository.findUserByEmail(request.getEmail()) != null &&
                 repository.findUserByEmail(request.getEmail()).getEmail().equals(request.getEmail())) {
             throw new Exception("Пользователь с таким email уже существоет");
         }
@@ -61,6 +61,8 @@ public class AuthenticationService {
         cookie.setPath("/");
         cookie.setDomain("videiperimetr.vercel.app");
         cookie.setSecure(true);
+        String cookieString = cookie.getName() + "=" + cookie.getValue() + "; SameSite=None";
+        response.addHeader("Set-Cookie", cookieString);
         response.addCookie(cookie);
         /*return AuthenticationResponse.builder()
                 .token(jwtToken)
