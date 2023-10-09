@@ -10,6 +10,7 @@ import by.koolbasov.videoperimetrproject.table.Role;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -45,7 +46,7 @@ public class AuthenticationService {
     }
 
 
-    public String/*AuthenticationResponse*/ authenticate(AuthenticationRequest request, HttpServletResponse response) {
+    public HttpHeaders authenticate(AuthenticationRequest request, HttpServletResponse response) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -61,9 +62,11 @@ public class AuthenticationService {
         cookie.setDomain("videiperimetr.vercel.app");
         cookie.setSecure(true);
         response.addCookie(cookie);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.SET_COOKIE, cookie.toString());
         /*return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();*/
-        return "ok";
+        return headers;
     }
 }
