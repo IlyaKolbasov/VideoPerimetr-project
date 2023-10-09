@@ -29,12 +29,9 @@ public class AuthenticationController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> authenticate(
+    public void /*ResponseEntity<String>*/ authenticate(
             @RequestBody AuthenticationRequest request, HttpServletResponse response
-    ) {service.authenticate(request, response);
-        return ResponseEntity.ok()
-                .body("cookie set successfully");
-
+    ) { service.authenticate(request, response);
     }
 
 

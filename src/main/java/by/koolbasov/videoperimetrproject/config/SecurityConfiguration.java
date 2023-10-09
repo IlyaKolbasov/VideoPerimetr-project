@@ -31,7 +31,7 @@ public class SecurityConfiguration implements WebMvcConfigurer  {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("https://videoperimetr.onrender.com/userlog/login","https://videoperimetr.onrender.com/mainpage")
+                .requestMatchers("/userlog/login","/mainpage")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
