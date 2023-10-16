@@ -54,8 +54,8 @@ public class AuthenticationService {
         //var jwtToken = jwtService.generateToken(user);
         Cookie cookie = new Cookie("jwt", jwtService.generateToken(user));
         cookie.setMaxAge(3600);
-       // cookie.setPath("/");
-        // cookie.setDomain("videiperimetr.vercel.app");
+        cookie.setPath("/");
+        cookie.setDomain("videiperimetr.vercel.app");
         //cookie.setAttribute("SameSite", "None");
      //   cookie.setSecure(true);
         response.addCookie(cookie);
