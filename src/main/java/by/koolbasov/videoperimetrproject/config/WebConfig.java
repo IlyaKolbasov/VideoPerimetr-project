@@ -14,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 //.allowedOrigins("https://videiperimetr.vercel.app")
                 //.allowedOrigins("https://videiperimetr-ilyakolbasovs-projects.vercel.app")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("https://videoperimetrclient.onrender.com")
                 .allowedHeaders("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true)
