@@ -57,7 +57,7 @@ public class AuthenticationService {
         cookie.setPath("/");
         cookie.setDomain(".vercel.app");
         //cookie.setAttribute("SameSite", "None");
-     //   cookie.setSecure(true);
+     //cookie.setSecure(true);
         response.addCookie(cookie);
         /*return AuthenticationResponse.builder()
                 .token(jwtToken)
