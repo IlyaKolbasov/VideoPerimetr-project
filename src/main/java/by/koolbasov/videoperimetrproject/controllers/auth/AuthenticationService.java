@@ -42,7 +42,7 @@ public class AuthenticationService {
     }
 
 
-    public void authenticate(AuthenticationRequest request, HttpServletResponse response) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -51,17 +51,17 @@ public class AuthenticationService {
         );
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
-        //var jwtToken = jwtService.generateToken(user);
-        Cookie cookie = new Cookie("jwt", jwtService.generateToken(user));
-        cookie.setMaxAge(3600);
-        cookie.setPath("/");
-        cookie.setDomain("videoperimetrclient.onrender.com");
+        var jwtToken = jwtService.generateToken(user);
+//        Cookie cookie = new Cookie("jwt", jwtService.generateToken(user));
+//        cookie.setMaxAge(3600);
+//        cookie.setPath("/");
+//        cookie.setDomain("videoperimetrclient.onrender.com");
         //cookie.setAttribute("SameSite", "None");
      //cookie.setSecure(true);
-        response.addCookie(cookie);
-        /*return AuthenticationResponse.builder()
+        //response.addCookie(cookie);
+        return AuthenticationResponse.builder()
                 .token(jwtToken)
-                .build();*/
+                .build();
 
     }
 }

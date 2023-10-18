@@ -31,8 +31,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
-        //final String authHeader = request.getHeader("Authorization");
-        Cookie []arrayCookie = request.getCookies();
+        final String authHeader = request.getHeader("Authorization");
+//        Cookie []arrayCookie = request.getCookies();
         final String jwt;
         final String userEmail;
 
@@ -41,12 +41,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 //            filterChain.doFilter(request, response);
 //            return;
 //        }
-//        jwt = authHeader.substring(7);
-       if (arrayCookie==null || arrayCookie.length==0) {
+
+       if (authHeader==null || !authHeader.startsWith("Bearer ")) {
            filterChain.doFilter(request, response);
           return;
         }
-        jwt=arrayCookie[0].getValue();
+       jwt = authHeader.substring(7);
+       // jwt=arrayCookie[0].getValue();
         userEmail = jwtService.extractUsername(jwt);
         if(userEmail!=null && SecurityContextHolder.getContext().getAuthentication() ==null){// not auth
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
