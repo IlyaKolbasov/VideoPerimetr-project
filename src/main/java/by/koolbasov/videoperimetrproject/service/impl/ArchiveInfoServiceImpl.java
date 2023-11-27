@@ -9,6 +9,7 @@ import by.koolbasov.videoperimetrproject.repository.AddressRepository;
 import by.koolbasov.videoperimetrproject.repository.ArchiveInfoRepository;
 import by.koolbasov.videoperimetrproject.repository.UserRepository;
 import by.koolbasov.videoperimetrproject.service.ArchiveInfoService;
+import by.koolbasov.videoperimetrproject.table.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +47,18 @@ public class ArchiveInfoServiceImpl implements ArchiveInfoService {
     }
 
     @Override
-    public List<ArchiveInfoDto> getAllArchiveInfoDto() {
-       return ArchiveInfoMapper.MAPPER.toArchiveInfoListDto(archiveInfoRepository.findAll());
+    public void upDateStatus(Long id) {
+       archiveInfoRepository.upDateStatus(id, Status.isProcessing);
+    }
+
+    @Override
+    public List<ArchiveInfoDto> getAllArchiveInfoUnProcessedDto() {
+       return ArchiveInfoMapper.MAPPER.toArchiveInfoListDto(archiveInfoRepository.findAllByStatus(Status.unProcessed));
+    }
+
+    @Override
+    public List<ArchiveInfoDto> getAllArchiveInfoIsProcessingDto() {
+        return ArchiveInfoMapper.MAPPER.toArchiveInfoListDto(archiveInfoRepository.findAllByStatus(Status.isProcessing));
     }
 
 

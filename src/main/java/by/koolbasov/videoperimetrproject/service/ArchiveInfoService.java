@@ -7,6 +7,8 @@ import java.util.List;
 public interface ArchiveInfoService {
     void saveArchiveInfo(ArchiveInfoDto archiveInfodto);
     void delete (Long id);
-    List<ArchiveInfoDto> getAllArchiveInfoDto();
+    void upDateStatus(Long id);
+    List<ArchiveInfoDto> getAllArchiveInfoUnProcessedDto();
 
+    List<ArchiveInfoDto> getAllArchiveInfoIsProcessingDto();
 }

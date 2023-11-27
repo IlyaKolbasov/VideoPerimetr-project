@@ -1,6 +1,9 @@
 package by.koolbasov.videoperimetrproject.dto;
 
 import by.koolbasov.videoperimetrproject.entity.Address;
+import by.koolbasov.videoperimetrproject.table.Status;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +26,6 @@ public class ArchiveInfoDto {
     private String fromDate;
     private String toTime;
     private String toDate;
+    @Enumerated(EnumType.STRING)
+    private Status status=Status.unProcessed;
 }

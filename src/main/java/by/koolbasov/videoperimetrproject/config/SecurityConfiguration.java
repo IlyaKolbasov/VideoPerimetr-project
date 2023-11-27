@@ -31,7 +31,7 @@ public class SecurityConfiguration implements WebMvcConfigurer  {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/userlog/login","/mainpage")
+                .requestMatchers("/userlog/login","/mainpage","/userlog/registration")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

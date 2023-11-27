@@ -16,7 +16,15 @@ public class AdminController {
 
     @GetMapping(path = "/admin")
     public ResponseEntity<List<ArchiveInfoDto>> getArchiveInfo(){
-        return ResponseEntity.ok(archiveInfoService.getAllArchiveInfoDto());
+        return ResponseEntity.ok(archiveInfoService.getAllArchiveInfoUnProcessedDto());
+    }
+    @GetMapping(path = "/admin/isProcessing")
+    public ResponseEntity<List<ArchiveInfoDto>> getArchiveInfoisProcessing(){
+        return ResponseEntity.ok(archiveInfoService.getAllArchiveInfoIsProcessingDto());
+    }
+    @PutMapping(path="/admin/updatestatus")
+    public void upDateStatus(@RequestParam("id") Long id){
+        archiveInfoService.upDateStatus(id);
     }
     @DeleteMapping(path = "/admin/delete")
     public void deleteArchiveInfo(@RequestParam("id") Long id){

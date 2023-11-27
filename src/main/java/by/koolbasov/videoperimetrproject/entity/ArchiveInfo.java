@@ -1,6 +1,8 @@
 package by.koolbasov.videoperimetrproject.entity;
 
 
+import by.koolbasov.videoperimetrproject.table.Role;
+import by.koolbasov.videoperimetrproject.table.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,6 +11,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table()
 public class ArchiveInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +28,8 @@ public class ArchiveInfo {
     private String fromDate;
     private String toTime;
     private String toDate;
+    @Enumerated(EnumType.STRING)
+    private Status status=Status.unProcessed;
 
 
 
