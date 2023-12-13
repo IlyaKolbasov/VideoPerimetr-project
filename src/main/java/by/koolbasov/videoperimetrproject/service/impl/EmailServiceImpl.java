@@ -19,7 +19,8 @@ public class EmailServiceImpl {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("kolbiskolbis@gmail.ru");
         message.setSubject("Видеопериметр! Запрос Видеоархива");
-        message.setText("Город: " + archiveInfo.getCity()+"\n"+
+        message.setText("Имя, фамилия: " + archiveInfo.getFirstName()+" "+archiveInfo.getLastName()+"\n"+
+                        "Город: " + archiveInfo.getCity()+"\n"+
                         "Улица,дом: " + archiveInfo.getStreet() + archiveInfo.getBuildingNumber()+"\n"+
                         "Номер квартиры: " + archiveInfo.getFlatNumber()+"\n"+
                         "Период с "+archiveInfo.getFromTime()+" "+ archiveInfo.getFromDate() +
