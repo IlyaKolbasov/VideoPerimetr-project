@@ -22,11 +22,7 @@ public class ArchiveInfoServiceImpl implements ArchiveInfoService {
 
     @Autowired
     private ArchiveInfoRepository archiveInfoRepository;
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private AddressRepository addressRepository;
     @Override
     public void saveArchiveInfo(ArchiveInfoDto archiveInfodto) {
 //        var archiveInfo = ArchiveInfo.builder()
@@ -39,6 +35,7 @@ public class ArchiveInfoServiceImpl implements ArchiveInfoService {
 //                .toTime(archiveInfodto.getToTime())
 //                .build();
         archiveInfoRepository.save(ArchiveInfoMapper.MAPPER.toArchiveInfo(archiveInfodto));
+
     }
 
     @Override
