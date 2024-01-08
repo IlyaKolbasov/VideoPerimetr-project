@@ -17,7 +17,7 @@ public class EmailServiceImpl {
     {
         ArchiveInfo archiveInfo = ArchiveInfoMapper.MAPPER.toArchiveInfo(archiveInfodto);
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("kolbiskolbis@gmail.ru");
+        message.setTo("videoperimetr_by@mail.ru");
         message.setSubject("Видеопериметр! Запрос Видеоархива");
         message.setText("Имя, фамилия: " + archiveInfo.getFirstName()+" "+archiveInfo.getLastName()+"\n"+
                         "Город: " + archiveInfo.getCity()+"\n"+
