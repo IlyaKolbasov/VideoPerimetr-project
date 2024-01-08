@@ -18,8 +18,11 @@ public class AddressController {
     private AddressServiceImpl addressService;
 
     @GetMapping("/")
-    public ResponseEntity<Set<String>> getCity() {
-        return ResponseEntity.ok(addressService.findAllCity());
+   // public ResponseEntity<Set<String>> getCity() {
+ //       return ResponseEntity.ok(addressService.findAllCity());
+   // }
+    public String getCity() {
+        return "work";
     }
 
     @PostMapping("/")
